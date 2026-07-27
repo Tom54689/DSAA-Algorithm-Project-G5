@@ -23,8 +23,8 @@ Intro: Joshua
 Outro: Adam
 
 IMPORTANT NOTES:
-Language: Python
-Deadline: Finish Algo by 2nd August & Report Done By 7th or 8th
+-Language: Python
+-Deadline: Finish Algo by 2nd August & Report Done By 7th or 8th
 
 UPLOAD YOUR CODE HERE
-Make a Folder for each algorithm to not clutter the repo
+-Make a Folder for each algorithm to not clutter the repo
