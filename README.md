@@ -1,30 +1,132 @@
-# DSAA-Algorithm-Project-G5
-For Each Section the pair must:
-1. Select 1 Algorithm
-2. Code the Selected Algorithm
-3. In the Report:
-i. Do your own problem's Section
-    -Explain What is the algo you chose and how it functions
-    -Present How you Input/Output data
-    - Code Snippets of key parts of the algorithm
-    -Test with different input cases 
-    - Strengths/Limitation of the algorithm
-ii. Testing & Validation
--Provide a set of inputs along with it's expected output of the algorithm
--Explain how close the answer is to the actual solution (or if its better than the expected solution)
-iii. Challenges:
-Explain the challenges faced while coding
-iv. AI Declaration:
-Declare if AI tools is used
+# DSAA Algorithm Project (Group 5)
 
+## Project Overview
+This project is part of the **Data Structures and Algorithms (DSAA)** course.
 
-iii.
-Intro: Joshua
-Outro: Adam
+Each pair is responsible for selecting **one algorithm**, implementing it in **Python**, and documenting the implementation in the final report.
 
-IMPORTANT NOTES:
--Language: Python
--Deadline: Finish Algo by 2nd August & Report Done By 7th or 8th
+---
 
-UPLOAD YOUR CODE HERE
--Make a Folder for each algorithm to not clutter the repo
+# Project Requirements
+
+## 1. Algorithm Implementation
+Each pair must:
+
+- Select **one algorithm**
+- Implement the selected algorithm in **Python**
+- Upload the code to this repository
+
+> **Repository Structure:**  
+> Create a separate folder for each algorithm to keep the repository organized.
+
+Example:
+
+```
+/
+├── Dijkstra/
+├── MergeSort/
+├── HuffmanCoding/
+├── README.md
+```
+
+---
+
+# Report Requirements
+
+For your assigned algorithm, include the following sections.
+
+## I. Algorithm Explanation
+
+### Explain the Algorithm
+- Describe what the algorithm is
+- Explain how the algorithm works
+- Explain the input and output format
+
+### Code Explanation
+Include important code snippets that demonstrate the core logic of the algorithm.
+
+### Testing
+Test the algorithm using different input cases.
+
+### Analysis
+Discuss:
+- Strengths
+- Limitations
+
+---
+
+## II. Testing & Validation
+
+Provide:
+
+- Test inputs
+- Expected outputs
+- Actual outputs
+
+Explain:
+- Whether the implementation matches the expected results
+- If there are differences, explain why
+- Whether the produced solution is optimal or better than the expected solution (if applicable)
+
+---
+
+## III. Challenges
+
+Explain any challenges encountered during development, such as:
+
+- Understanding the algorithm
+- Debugging
+- Edge cases
+- Performance issues
+- Implementation difficulties
+
+---
+
+## IV. AI Declaration
+
+State whether AI tools were used during the project.
+
+If used, briefly explain:
+- Which AI tool(s) were used
+- What they were used for (e.g., debugging, explanations, documentation)
+
+---
+
+# Project Timeline
+
+| Task | Deadline |
+|------|----------|
+| Algorithm Implementation | **2 August** |
+| Report Completion | **7–8 August** |
+
+---
+
+# Presentation
+
+### Introduction
+**Joshua**
+
+### Conclusion
+**Adam**
+
+---
+
+# Programming Language
+
+**Python**
+
+---
+
+# Code Submission
+
+Please upload your algorithm implementation inside its own folder.
+
+Example:
+
+```
+Problem1/
+│
+├── bubble_sort.py
+├── README.md (optional)
+└── test_cases.png (optional)
+```
