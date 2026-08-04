@@ -28,6 +28,7 @@ class MazeGUI(tk.Tk):
         self.cell_state = {}     # (row, col) -> state string
         self.start_cell = None
         self.end_cell = None
+        self.result = None
  
         # ---- outer frame gives padding around everything ----
         outer = ttk.Frame(self, padding=20)
@@ -198,10 +199,10 @@ class MazeGUI(tk.Tk):
             print("Set both a start and an end cell first.")
             return
  
-        walls = {c for c, s in self.cell_state.items() if s == WALL}
-        print("Start:", self.start_cell)
-        print("End:", self.end_cell)
-        print("Walls:", len(walls))
-        # TODO: call your A* implementation here, e.g.
-        # path = astar(self.start_cell, self.end_cell, walls, ROWS, COLUMNS)
-        # then draw it on the canvas
+        self.result = {
+            "start": self.start_cell,
+            "end": self.end_cell,
+            "cell_state": self.cell_state,
+        }
+        self.destroy()
+        return self.result
