@@ -6,14 +6,25 @@ ROWS = 20
 COLUMNS = 20
 
 # Cell states
-EMPTY = "white"
-WALL = "black"
-START = "green"
-END = "red"
-GRAVEL = "grey"
-MUD = "brown"
-ICE = "CadetBlue1"
-FOOD = "yellow"
+EMPTY = 0
+WALL = 1
+START = 2
+END = 3
+GRAVEL = 4
+MUD = 5
+ICE = 6
+FOOD = 7
+
+tile_colour = {
+     0: "white",
+     1: "black",
+     2: "green",
+     3: "red",
+     4: "gray",
+     5: "brown",
+     6: "CadetBlue1",
+     7: "yellow"
+}
 
 class MazeGUI(tk.Tk):
     def __init__(self):
@@ -26,6 +37,7 @@ class MazeGUI(tk.Tk):
         self.mode = tk.StringVar(value="wall")   # "wall", "start", "end", "eraser"
         self.cells = {}          # (row, col) -> canvas rectangle id
         self.cell_state = {}     # (row, col) -> state string
+        self.cell_state_id = {}
         self.start_cell = None
         self.end_cell = None
         self.result = None
@@ -66,7 +78,7 @@ class MazeGUI(tk.Tk):
                             value="mud").pack(side="left", padx=4)
         ttk.Radiobutton(row3, text="Ice(0.5)", variable=self.mode,
                                     value="ice").pack(side="left", padx=4)
-        ttk.Radiobutton(row3, text="Food(-1)", variable=self.mode,
+        ttk.Radiobutton(row3, text="Food(0)", variable=self.mode,
                             value="food").pack(side="left", padx=4)
         
         ttk.Button(row3, text="Clear", command=self.clear_grid
@@ -105,11 +117,12 @@ class MazeGUI(tk.Tk):
  
                 cell_id = self.canvas.create_rectangle(
                     x1, y1, x2, y2,
-                    fill=EMPTY,
+                    fill=tile_colour[EMPTY],
                     outline="gray"
                 )
                 self.cells[(r, c)] = cell_id
                 self.cell_state[(r, c)] = EMPTY
+                self.cell_state[(r, c)] = 0
  
     # ------------------------------------------------------------------
     def _cell_from_event(self, event):
@@ -185,7 +198,7 @@ class MazeGUI(tk.Tk):
  
     def _paint(self, cell, state):
         self.cell_state[cell] = state
-        self.canvas.itemconfig(self.cells[cell], fill=state)
+        self.canvas.itemconfig(self.cells[cell], fill=tile_colour[state])
  
     # ------------------------------------------------------------------
     def clear_grid(self):
@@ -206,3 +219,53 @@ class MazeGUI(tk.Tk):
         }
         self.destroy()
         return self.result
+
+    
+def show_path_window(cell_state, path=None):
+    """
+    Pop up a new window showing the finished maze, with a line drawn
+    through the given path.
+ 
+    cell_state: dict of (row, col) -> state int (from app.result["cell_state"])
+    path:       ordered list of (row, col) tuples from start to end
+    """
+    window = tk.Tk()
+    window.title("Maze Result")
+    window.resizable(False, False)
+ 
+    outer = ttk.Frame(window, padding=20)
+    outer.pack(fill="both", expand=True)
+ 
+    canvas_frame = ttk.Frame(outer, padding=10, relief="sunken")
+    canvas_frame.pack()
+ 
+    canvas = tk.Canvas(
+        canvas_frame,
+        width=COLUMNS * CELL_SIZE,
+        height=ROWS * CELL_SIZE,
+        bg="white",
+        highlightthickness=1,
+        highlightbackground="gray"
+    )
+    canvas.pack()
+ 
+    # redraw every cell in its final color
+    for (r, c), state in cell_state.items():
+        x1 = c * CELL_SIZE
+        y1 = r * CELL_SIZE
+        x2 = x1 + CELL_SIZE
+        y2 = y1 + CELL_SIZE
+        canvas.create_rectangle(x1, y1, x2, y2, fill=tile_colour[state], outline="gray")
+ 
+    # draw a line through the center of each cell in the path
+    if path:
+        points = []
+        for (r, c) in path:
+            cx = c * CELL_SIZE + CELL_SIZE // 2
+            cy = r * CELL_SIZE + CELL_SIZE // 2
+            points.extend([cx, cy])
+ 
+        if len(points) >= 4:  # need at least 2 points to draw a line
+            canvas.create_line(*points, fill="blue", width=3)
+ 
+    window.mainloop()
