@@ -226,6 +226,10 @@ def get_maze_input():
                     print(
                         "Invalid row length. Try again."
                     )
+                elif any(char not in ["S", "E", "0", "1"] for char in row):
+                    print(
+                        "Invalid character(s). Only S, E, 0 and 1 are allowed."
+                        )
                 else:
                     maze.append(
                         list(row)
