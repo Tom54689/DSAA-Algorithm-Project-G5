@@ -132,9 +132,9 @@ def kruskal(vertices, edges):
     for start, end, weight in sorted_edges:
 
         if creates_cycle(mst_graph, start, end):
-            print(f"({start}, {end}, {weight:g}) - no cycle (selected)")
-        else:
             print(f"({start}, {end}, {weight:g}) - forms a cycle (skipped)")
+        else:
+            print(f"({start}, {end}, {weight:g}) - no cycle (selected)")
 
             mst.append([start, end, weight])
             total_weight += weight
